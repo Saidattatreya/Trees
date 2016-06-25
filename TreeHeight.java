@@ -10,8 +10,8 @@ public class TreeHeight {
 		int rightHeight = getHeight(curr.right);
 		
 		if(leftHeight > rightHeight)
-			return leftHeight;
+			return leftHeight+1;
 		else
-			return rightHeight;
+			return rightHeight+1;
 	}
 }

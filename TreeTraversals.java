@@ -17,11 +17,26 @@ public class TreeTraversals {
 	
 	public void printLevelOrderRec(TreeNode curr)
 	{
-		//int height = TreeHeight.getHeight(this.getroot);
+		//int height = TreeHeight.getHeight(bt.getroot());
 		int height = 0;
 		for(int i = 1 ; i<= height; ++i)
 			printGivenLevel(curr, i);
 	}
+	
+	//Print method to print levels in line by line.
+	
+	public void printlevelOrderLineByLineRec(TreeNode curr)
+	{
+		//int height = TreeHeight.getHeight(bt.getroot());
+		int height = 0;
+		for(int i = 1 ; i<= height; ++i)
+		{
+			printGivenLevel(curr, i);
+			System.out.println();
+		}
+		
+	}
+	
 	
 	public static void printlevelOrderIter(TreeNode curr){
 		
