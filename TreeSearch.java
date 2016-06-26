@@ -1,4 +1,4 @@
-package com.alg.top20.treeproblems;
+
 import java.util.Queue;
 import java.util.LinkedList;
 public class TreeSearch {

@@ -1,4 +1,4 @@
-package com.alg.top20.treeproblems;
+
 import java.util.*;
 public class TreeTraversals {
 	
@@ -83,6 +83,52 @@ public class TreeTraversals {
 		}
 	}
 	
+	public static void morrisTraversal(TreeNode curr)
+	{
+		//Without using stack
+		//1.Initialize current node to root
+		//2.while current is not NULL
+		//      If current does not have left child
+		//			a.Print current's data
+		//			b.Go to the right, i.e., curr = curr.right;
+		//		Else 
+		//			make current as the right child of the rightmost node in the current's left subtree
+		//			go to this left child i.e., curr = curr.left;
+		
+			TreeNode pre;
+			
+			if(curr == null)
+				return;
+			while(curr != null)
+			{
+				if(curr.left == null)
+				{
+					System.out.print(curr.data + " ");
+					curr = curr.right;
+				}else
+				{
+					pre = curr.left;
+					while(pre.right != null && pre.right != curr)
+					{
+						pre = pre.right;
+					}
+					if(pre.right == null)
+					{
+						pre.right = curr;
+						curr = curr.left;
+					}else //pre.right = curr condition
+					{
+						pre.right = null;
+						System.out.print(curr.data +" ");
+						curr = curr.right;
+					}
+				}
+			}
+	}
+	
+	
+	
+	
 	public static void printPreOrderRec(TreeNode curr)
 	{
 		if(curr == null ) return;
@@ -134,6 +180,8 @@ public class TreeTraversals {
 			
 		}
 	}
+	
+	
 	
 	
 	

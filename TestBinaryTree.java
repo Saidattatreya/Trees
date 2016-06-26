@@ -1,8 +1,10 @@
-package com.alg.top20.treeproblems;
+
 
 import java.util.Queue;
 import java.util.LinkedList;
 import java.util.Random;
+
+
 
 public class TestBinaryTree {
 
@@ -172,12 +174,58 @@ public class TestBinaryTree {
 		}
 
 	}
+	
+	public static boolean sameTree(TreeNode tree1 , TreeNode tree2)
+	{
+		if (tree1 == null && tree2 == null)
+			return true;
+		if(tree1 != null && tree2 != null )
+			return( tree1.data == tree2.data && sameTree(tree1.left , tree2.left) && sameTree(tree1.right , tree2.right));
+		else
+			return false;
+	}
+	
+	private  void deleteTree(TreeNode curr)
+	{
+		if(curr == null) return;
+		deleteTree(curr.left);
+		deleteTree(curr.right);
+		System.out.println("Deleting Node :" + curr.data);
+		curr = null;
+	}
+	
+	public  void deleteTreeRef(TreeNode curr)
+	{
+		deleteTree(curr);
+		System.out.println("Complete Tree Deleted:");
+		curr = null;
+	}
+	
+	public void mirrorTree(TreeNode curr)
+	{
+		if(curr == null ) return;
+		
+		mirrorTree(curr.left);
+		mirrorTree(curr.right);
+		
+		TreeNode temp = curr.left;
+		curr.left = curr.right;
+		curr.right = temp;	
+	}
+	
+	
+
 
 	public static void main(String[] args) {
 		int size = Integer.parseInt(args[0]);
 
 		TestBinaryTree bt = new TestBinaryTree();
 		bt.randomBST(size);
+		
+		TestBinaryTree bt2 = new TestBinaryTree();
+		bt2.randomBST(size);
+
+		
 		bt.display();
 		// bt.displayRecursive();
 		// System.out.println();
@@ -201,6 +249,9 @@ public class TestBinaryTree {
 
 		System.out.println("\n In order iterative output :");
 		TreeTraversals.printInOrderIter(bt.getRoot());
+		
+		System.out.println("\n In order Morris traversal");
+		TreeTraversals.morrisTraversal(bt.getRoot());
 
 		System.out.println("\n Pre order recursive output :");
 		bt.printPreOrderRecursive(bt.getRoot());
@@ -213,6 +264,13 @@ public class TestBinaryTree {
 
 		System.out.println("\n Post order iterative output:");
 		TreeTraversals.printPostOrderIter(bt.getRoot());
+		
+		//just give only size 1 as input argument it will give true 
+		boolean b = sameTree(bt.getRoot() , bt2.getRoot());
+		System.out.println("\n These two trees identical ? " + b );
+		
+		bt.deleteTreeRef(bt.getRoot());
+		bt.display();
 	}
 
 }
